@@ -36,6 +36,7 @@ typedef NS_ENUM(NSInteger,CardSuit){
 @property(nonatomic,assign)CardType type;
 @property(nonatomic,assign)CardSuit suit;
 
+-(instancetype)initWithType: (CardType)type Suit:(CardSuit)suit;
 -(NSString *) name;
 -(NSInteger) score;
 -(BOOL) isAce;

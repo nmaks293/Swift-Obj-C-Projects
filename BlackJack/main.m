@@ -20,9 +20,9 @@ NSString* getInput(){
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
-        
-        BlackJack *game=[BlackJack new];
+
         do{
+            BlackJack *game=[BlackJack new];
             [game resume];
             NSLog(@"Do you want play one more game?y/n \n");
             
