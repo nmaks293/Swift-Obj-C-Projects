@@ -9,14 +9,14 @@
 #import "Card.h"
 
 @implementation Card
--(instancetype)init
+-(instancetype)initWithType: (CardType)type Suit:(CardSuit)suit
 {
     self = [super init];
     if(self){
-        _type = arc4random_uniform(12);
-        _suit = arc4random_uniform(3);
+        _type = type;
+        _suit = suit;
     }
-    return self;
+    return self; 
 }
 -(NSString *)name{
     NSString *card;
@@ -62,18 +62,19 @@
             card= @"A";
             break;
     }
+    
     switch (_suit) {
         case CardSuitC:
-            card=[card stringByAppendingString:@"♣"];
+            card=[card stringByAppendingString:@"♣️"];
             break;
         case CardSuitD:
-            card=[card stringByAppendingString:@"♦"];
+            card=[card stringByAppendingString:@"♦️"];
             break;
         case CardSuitH:
-            card=[card stringByAppendingString:@"♥"];
+            card=[card stringByAppendingString:@"♥️"];
             break;
         case CardSuitP:
-            card=[card stringByAppendingString:@"♠"];
+            card=[card stringByAppendingString:@"♠️"];
             break;
     }
     return card;

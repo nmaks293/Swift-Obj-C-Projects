@@ -8,8 +8,9 @@
 
 #import "NSArray+Card.h"
 #import "Card.h"
-//добавить масть картам, 52 карты ,спрашивать про еще игру
-@implementation NSArray (Card)
+
+
+@implementation NSMutableArray (Card)
 -(NSInteger)_calcScoreFor{
    __block NSInteger score=0,aceCount=0;
     [self enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
@@ -31,6 +32,23 @@
         [cardNames appendString:@" "];
     }];    
     return cardNames;
+}
+- (void)shuffle
+{
+    NSUInteger count = [self count];
+    if (count <= 1) return;
+    for (NSUInteger i = 0; i < count - 1; ++i) {
+        NSInteger remainingCount = count - i;
+        NSInteger exchangeIndex = i + arc4random_uniform((u_int32_t )remainingCount);
+       [self exchangeObjectAtIndex:i withObjectAtIndex:exchangeIndex];
+    }
+}
+
+-(Card*)give
+{
+    Card *card=[self objectAtIndex:0];
+    [self removeObjectAtIndex:0];
+    return card;
 }
 
 @end

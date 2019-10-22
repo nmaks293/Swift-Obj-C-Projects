@@ -29,25 +29,31 @@
 }
 -(void)startGame{
     for(int i=0;i<52;i++){
-        [_cards addObject:@1];
+        Card *card=[[Card alloc]initWithType:i/4 Suit:i%4];
+        [_cards addObject:card];
     }
+    [_cards shuffle];
+
     
-    Card *card1=[[Card alloc]init];
-    Card *card2=[[Card alloc]init];
+    Card *card1=[_cards give];
+    Card *card2=[_cards give];
+    
     [_myCards addObjectsFromArray:@[card1,card2]];
     
-    [_dealerCards addObject:[[Card alloc] init]];
+    Card *dealerFirstCard=[_cards give];
+    
+    [_dealerCards addObject:dealerFirstCard];
     
     [self printMy];
     [self printDealer];
 }
 
 -(void)hitMe{
-    [self.myCards addObject:[[Card alloc]init]];
+    [self.myCards addObject:[_cards give]];
     [self printMy];
     
 }
--(NSInteger)_calcScoreFor:(NSArray*)arr{
+-(NSInteger)_calcScoreFor:(NSMutableArray*)arr{
     return [arr _calcScoreFor];
 }
 
@@ -55,7 +61,7 @@
     NSInteger dealerScore=[self _calcScoreFor:self.dealerCards];
     if(dealerScore>=17)return NO;
     
-    [self.dealerCards addObject:[[Card alloc]init]];
+    [self.dealerCards addObject:[_cards give]];
     return YES;
 }
 
@@ -72,7 +78,7 @@
 }
 -(BOOL) iHaveMore{
     NSInteger  myScore=[self _calcScoreFor:self.myCards];
-      return myScore>21;
+    return myScore>21;
 }
 -(BOOL) dealerHasMore{
     NSInteger  dScore=[self _calcScoreFor:self.dealerCards];
@@ -89,13 +95,13 @@
     NSInteger  dScore=[self _calcScoreFor:self.dealerCards];
     return myScore>dScore;
 }
--(NSString*)_getCardNames:(NSArray*)cards{
+-(NSString*)_getCardNames:(NSMutableArray*)cards{
     return [cards _getCardNames];
 }
 
 -(void)printMy{
     NSLog(@"I have: %@",[self _getCardNames:self.myCards]);
-
+    
 }
 -(void)printDealer{
     NSLog(@"Dealer has: %@",[self _getCardNames:self.dealerCards]);
