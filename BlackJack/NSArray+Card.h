@@ -6,7 +6,6 @@
 //  Copyright © 2019 User. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 #import "Card.h"
 

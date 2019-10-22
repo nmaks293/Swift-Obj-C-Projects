@@ -33,8 +33,8 @@ typedef NS_ENUM(NSInteger,CardSuit){
 };
 
 @interface Card : NSObject
-@property(nonatomic,assign)CardType type;
-@property(nonatomic,assign)CardSuit suit;
+@property(nonatomic,assign,readonly)CardType type;
+@property(nonatomic,assign,readonly)CardSuit suit;
 
 -(instancetype)initWithType: (CardType)type Suit:(CardSuit)suit;
 -(NSString *) name;

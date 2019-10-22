@@ -35,6 +35,7 @@ NS_ASSUME_NONNULL_BEGIN
 -(NSInteger)_calcScoreFor:(NSArray*)arr;
 -(NSString*)_getCardNames:(NSArray*)cards;
 
+-(void)initCards;
 
 @end
 

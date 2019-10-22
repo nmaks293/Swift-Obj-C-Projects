@@ -10,12 +10,6 @@
 #import "Card.h"
 #import "NSArray+Card.h"
 
-@interface Game()
-
--(NSInteger)calcScoreFor:(NSArray*)arr;
--(NSString*)getCardNames:(NSArray*)cards;
-
-@end
 
 @implementation Game
 -(instancetype)init{
@@ -28,12 +22,8 @@
     return self;
 }
 -(void)startGame{
-    for(int i=0;i<52;i++){
-        Card *card=[[Card alloc]initWithType:i/4 Suit:i%4];
-        [_cards addObject:card];
-    }
-    [_cards shuffle];
-
+    
+    [self initCards];
     
     Card *card1=[_cards give];
     Card *card2=[_cards give];
@@ -47,6 +37,7 @@
     [self printMy];
     [self printDealer];
 }
+
 
 -(void)hitMe{
     [self.myCards addObject:[_cards give]];
@@ -108,5 +99,12 @@
 }
 
 
+-(void)initCards{
+    for(int i=0;i<52;i++){
+        Card *card=[[Card alloc]initWithType:i/4 Suit:i%4];
+        [_cards addObject:card];
+    }
+    [_cards shuffle];
+}
 
 @end
