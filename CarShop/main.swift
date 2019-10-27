@@ -2,11 +2,13 @@
 //  main.swift
 //  CarShop
 //
-//  Created by Никита Максаковский on 24.10.2019.
+//  Created by Никита Максаковский on 22.10.2019.
 //  Copyright © 2019 Никита Максаковский. All rights reserved.
 //
-
 import Foundation
 
-print("Hello, World!")
+
+let console: Console = Console(storage: Storage())
+console.run()
+
 
