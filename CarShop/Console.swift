@@ -1,9 +1,9 @@
 //
 //  Console.swift
-//  AutoCatalog
+//  CarShop
 //
-//  Created by Гость on 24/10/2019.
-//  Copyright © 2019 sia. All rights reserved.
+//  Created by Никита Максаковский on 27.10.2019.
+//  Copyright © 2019 Никита Максаковский. All rights reserved.
 //
 
 class Console {
@@ -121,13 +121,7 @@ class Console {
         case .characteristic:
             removeCarByChar()
         }
-        
-        
-        // TODO: надо сделать удаление машины по индексу
-        // TODO: разделить на две команду удалить
-        // TODO: надо сделать удаление машин по совпадению строка может быть в имени годе модели (contains)
-        
-        //        storage.removeCar(Car())
+        print("Car was successfully removed")
     }
     
     private func removeCarById() {
@@ -147,12 +141,40 @@ class Console {
             }
             
             storage.removeCar(storage.cars[id-1])
-            print("Car was successfully removed")
             break
         }
     }
     
     private func removeCarByChar() {
-        
+        while true {
+            print("Write car name: ",separator: "", terminator: "")
+            guard let carName = readLine() else {
+                fatalError("Ooops...")
+            }
+            print("Write car year: ", separator: "", terminator: "")
+            
+            var carYear: Int = 0
+            while true {
+                guard let carYearOfStr = readLine(), let newCarYear = Int(carYearOfStr) else {
+                    print("Please write correct year")
+                    continue
+                }
+                carYear = newCarYear
+                break
+            }
+            
+            print("Write car model: ", separator: "", terminator: "")
+            guard let carModel = readLine() else {
+                fatalError("Ooops...")
+            }
+            guard let id = storage.cars.firstIndex(of: Car(name: carName, year: carYear, model: carModel)) else {
+                print("Written car does not exist in storage")
+                print("Try again")
+                continue
+            }
+            storage.removeCar(storage.cars[id])
+            break
+            
+        }
     }
 }

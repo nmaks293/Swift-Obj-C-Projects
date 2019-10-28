@@ -1,9 +1,9 @@
 //
 //  Car.swift
-//  AutoCatalog
+//  CarShop
 //
-//  Created by Гость on 24/10/2019.
-//  Copyright © 2019 sia. All rights reserved.
+//  Created by Никита Максаковский on 27.10.2019.
+//  Copyright © 2019 Никита Максаковский. All rights reserved.
 //
 
 import Foundation
@@ -17,13 +17,17 @@ struct Car: CustomStringConvertible, Equatable {
     
     var description: String {
         return """
-                 Name \(name)
-                 Year \(year)
-                 Model \(model)
-               """
+        Name: \(name)
+        Year: \(year)
+        Model: \(model)
+        """
     }
     
     static func ==(lhs: Car, rhs: Car) -> Bool {
+        return lhs.name == rhs.name && lhs.model == rhs.model && lhs.year == rhs.year
+    }
+    
+    static func ===(lhs: Car, rhs: Car) -> Bool {
         return lhs.id == rhs.id
     }
 }

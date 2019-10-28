@@ -1,9 +1,9 @@
 //
 //  Command.swift
-//  AutoCatalog
+//  CarShop
 //
-//  Created by Гость on 24/10/2019.
-//  Copyright © 2019 sia. All rights reserved.
+//  Created by Никита Максаковский on 27.10.2019.
+//  Copyright © 2019 Никита Максаковский. All rights reserved.
 //
 
 enum Command: String {
