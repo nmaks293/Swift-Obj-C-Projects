@@ -18,6 +18,7 @@ class Console {
         while isWorked {
             print("Write command:", separator: "", terminator: "")
             guard let commandOfStr = readLine() else {
+                
                 fatalError("Ooops...")
             }
             guard let command = Command(rawValue: commandOfStr) else {
@@ -121,7 +122,6 @@ class Console {
         case .characteristic:
             removeCarByChar()
         }
-        print("Car was successfully removed")
     }
     
     private func removeCarById() {
@@ -139,42 +139,53 @@ class Console {
                 print("Car with this id does not exist, try again")
                 continue
             }
+            let carToBeRemoved = storage.cars[id-1]
             
             storage.removeCar(storage.cars[id-1])
+            
+            print("Car that has been removed")
+            print(carToBeRemoved)
+            
             break
         }
     }
     
     private func removeCarByChar() {
         while true {
-            print("Write car name: ",separator: "", terminator: "")
-            guard let carName = readLine() else {
-                fatalError("Ooops...")
+            print("Write characteristic: ",separator: "", terminator: "")
+            guard let someChar = readLine() else {
+                fatalError("There is no characteristic found")
             }
-            print("Write car year: ", separator: "", terminator: "")
+            var carsToBeRemoved: [Car] = []
             
-            var carYear: Int = 0
-            while true {
-                guard let carYearOfStr = readLine(), let newCarYear = Int(carYearOfStr) else {
-                    print("Please write correct year")
+            for car in storage.cars {
+                if car.name.contains(someChar) {
+                    carsToBeRemoved.append(car)
+                    storage.removeCar(car)
                     continue
                 }
-                carYear = newCarYear
-                break
+                if car.model.contains(someChar) {
+                    carsToBeRemoved.append(car)
+                    storage.removeCar(car)
+                    continue
+                }
+                if String(car.year).contains(someChar) {
+                    carsToBeRemoved.append(car)
+                    storage.removeCar(car)
+                    continue
+                }
+            }
+            if carsToBeRemoved.isEmpty {
+                print("None of the cars has '\(someChar)' as a characteristic")
+            } else {
+                print("Cars that have been removed:")
+                for (i, car) in carsToBeRemoved.enumerated() {
+                    print("#", i + 1, separator: "")
+                    print(car)
+                }
             }
             
-            print("Write car model: ", separator: "", terminator: "")
-            guard let carModel = readLine() else {
-                fatalError("Ooops...")
-            }
-            guard let id = storage.cars.firstIndex(of: Car(name: carName, year: carYear, model: carModel)) else {
-                print("Written car does not exist in storage")
-                print("Try again")
-                continue
-            }
-            storage.removeCar(storage.cars[id])
             break
-            
         }
     }
 }
