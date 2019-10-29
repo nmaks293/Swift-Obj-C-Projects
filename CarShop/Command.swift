@@ -9,8 +9,9 @@
 enum Command: String {
     case print = "print"
     case add = "add"
+    case addAfter = "add after"
     case remove = "remove"
     case exit = "exit"
     
-    static let commands: [Command] = [.print, .add, .remove, .exit]
+    static let commands: [Command] = [.print, .add, .remove, .exit, .addAfter]
 }

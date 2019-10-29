@@ -11,7 +11,7 @@ import Foundation
 private let fileURL = URL(fileURLWithPath: "/Users/maksakovsky/Desktop/tenzor/CarShop/cars.txt")
 
 class Storage {
-    internal private(set) var cars: [Car] = []
+    var cars: [Car] = []
     
     func addCar(_ car: Car) {
         cars.append(car)
@@ -37,7 +37,7 @@ class Storage {
             return
         }
         guard let loadedCars = try? JSONDecoder().decode([Car].self, from: data) else {
-            print("There is no suitable vehicle information in cars.txt file")
+            print("There is no suitable vehicle information in this file")
             return
         }
         

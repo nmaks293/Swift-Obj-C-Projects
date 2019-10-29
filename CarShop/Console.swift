@@ -18,8 +18,7 @@ class Console {
         while isWorked {
             print("Write command:", separator: "", terminator: "")
             guard let commandOfStr = readLine() else {
-                
-                fatalError("Ooops...")
+                fatalError("There is no command")
             }
             guard let command = Command(rawValue: commandOfStr) else {
                 print("Please write correct command: [\(allCommandsOfStr())]")
@@ -31,10 +30,12 @@ class Console {
                 isWorked = false
             case .print:
                 printCarList()
-            case .add:
-                addCar()
             case .remove:
                 removeCar()
+            case .add:
+                addCar(addingAfter: false)
+            case .addAfter:
+                addCar(addingAfter: true)
             }
         }
     }
@@ -68,10 +69,31 @@ class Console {
         
     }
     
-    private func addCar() {
+    private func addAfter() {
+        
+    }
+    
+    private func addCar(addingAfter: Bool) {
+        var position: Int = storage.cars.count
+        if addingAfter {
+            while true {
+                print("Write position to add after")
+                guard let positionToAdd = readLine(), let newPosition = Int(positionToAdd) else {
+                    print("Please write correct number")
+                    continue
+                }
+                position = newPosition
+                if position < 0 || position > storage.cars.count {
+                    print("Please write correct position")
+                    continue
+                }
+                break
+            }
+        }
+        
         print("Write car name: ", separator: "", terminator: "")
         guard let carName = readLine() else {
-            fatalError("Ooops...")
+            fatalError("There is no car name")
         }
         print("Write car year: ", separator: "", terminator: "")
         
@@ -88,10 +110,10 @@ class Console {
         
         print("Write car model: ", separator: "", terminator: "")
         guard let carModel = readLine() else {
-            fatalError("Ooops...")
+            fatalError("There is no car model")
         }
         
-        storage.addCar(Car(name: carName, year: carYear, model: carModel))
+        storage.cars.insert(Car(name: carName, year: carYear, model: carModel), at: position)
         print("Car was successfully added")
     }
     
@@ -105,7 +127,7 @@ class Console {
         while true{
             print("Want to remove car by characteristic or by id?(char/id) ", separator: "", terminator: "")
             guard let read = readLine() else {
-                fatalError("Ooops...")
+                fatalError("There is no answer(char/id)")
             }
             
             guard let command = CarCommands(rawValue: read) else {
@@ -128,7 +150,7 @@ class Console {
         while true{
             print("Write car id:" ,separator: "", terminator: "")
             guard let read = readLine() else {
-                fatalError("Ooops...")
+                fatalError("There is no car id")
             }
             guard let id = Int(read) else {
                 print("Please write correct id")
