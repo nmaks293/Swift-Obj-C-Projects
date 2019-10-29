@@ -69,10 +69,6 @@ class Console {
         
     }
     
-    private func addAfter() {
-        
-    }
-    
     private func addCar(addingAfter: Bool) {
         var position: Int = storage.cars.count
         if addingAfter {
