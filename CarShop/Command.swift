@@ -14,4 +14,13 @@ enum Command: String {
     case exit = "exit"
     
     static let commands: [Command] = [.print, .add, .remove, .exit, .addAfter]
+    
+    static func allCommands() -> String {
+        var result: String = ""
+        for command in self.commands {
+            result += "'\(command.rawValue)' "
+        }
+        return result
+    }
+    
 }

@@ -11,4 +11,15 @@ enum  CarCommands: String {
     case id = "id"
     
     static let commands: [CarCommands] = [.id, .characteristic]
+    
+    
+    
+    static func allCarCommands() -> String {
+        var result: String = ""
+        for command in self.commands {
+            result += "'\(command.rawValue)' "
+        }
+        return result
+    }
+    
 }
