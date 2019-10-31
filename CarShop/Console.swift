@@ -21,7 +21,7 @@ class Console {
                 fatalError("There is no command")
             }
             guard let command = Command(rawValue: commandOfStr) else {
-                print("Please write correct command: [\(allCommandsOfStr())]")
+                print("Please write correct command: [\(Command.allCommands())]")
                 continue
             }
             
@@ -37,23 +37,8 @@ class Console {
             case .addAfter:
                 addCar(addingAfter: true)
             }
+            
         }
-    }
-    
-    private func allCommandsOfStr() -> String {
-        var result: String = ""
-        for command in Command.commands {
-            result += "'\(command.rawValue)' "
-        }
-        return result
-    }
-    
-    private func allCarCommands() -> String {
-        var result: String = ""
-        for command in CarCommands.commands {
-            result += "'\(command.rawValue)' "
-        }
-        return result
     }
     
     private func printCarList() {
@@ -61,12 +46,7 @@ class Console {
             print("List is empty")
             return
         }
-        
-        for (i, car) in storage.cars.enumerated() {
-            print("#", i + 1, separator: "")
-            print(car)
-        }
-        
+        storage.printCars()
     }
     
     private func addCar(addingAfter: Bool) {
@@ -99,7 +79,6 @@ class Console {
                 print("Please write correct year")
                 continue
             }
-            
             carYear = newCarYear
             break
         }
@@ -127,7 +106,7 @@ class Console {
             }
             
             guard let command = CarCommands(rawValue: read) else {
-                print("Please write correct command: [\(allCarCommands())]")
+                print("Please write correct command: [\(CarCommands.allCarCommands())]")
                 continue
             }
             byWhat = command
@@ -160,7 +139,6 @@ class Console {
             let carToBeRemoved = storage.cars[id-1]
             
             storage.removeCar(storage.cars[id-1])
-            
             print("Car that has been removed")
             print(carToBeRemoved)
             

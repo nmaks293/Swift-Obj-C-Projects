@@ -23,11 +23,17 @@ class Storage {
         }
     }
     
+    func printCars() {
+        for (i, car) in self.cars.enumerated() {
+            print("#", i + 1, separator: "")
+            print(car)
+        }
+    }
+    
     func save() {
         guard let data = try? JSONEncoder().encode(cars) else {
             fatalError("Can't encode data")
         }
-        
         try? data.write(to: fileURL)
     }
     
@@ -40,7 +46,6 @@ class Storage {
             print("There is no suitable vehicle information in this file")
             return
         }
-        
         cars = loadedCars
     }
     
