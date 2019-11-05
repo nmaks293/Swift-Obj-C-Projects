@@ -101,7 +101,7 @@ class Console {
             }
             carFields[field] = carField
         }
-       
+        
         
         storage.cars.insert(Car(chars: carFields), at: position)
         print("Car was successfully added")

@@ -11,7 +11,7 @@ import Foundation
 struct Car: CustomStringConvertible, Equatable, Codable {
     private let id: UUID = UUID()
     let chars: [String : String]
-
+    
     var description: String {
         var string: String = ""
         for (field,value) in chars {
