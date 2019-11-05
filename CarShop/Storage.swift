@@ -19,7 +19,22 @@ class Storage {
     
     func removeCar(_ carForRemove: Car) {
         cars.removeAll { car in
-            return car === carForRemove            
+            return car == carForRemove
+        }
+    }
+    
+    func removeExcessCars(count: Int, fields: [String]) {
+        for car in cars {
+            if car.chars.keys.count != count {
+                removeCar(car)
+                continue
+            }
+            for (id,(field, _)) in car.chars.enumerated() {
+                if field != fields[id] {
+                    removeCar(car)
+                    break
+                }
+            }
         }
     }
     
@@ -47,6 +62,7 @@ class Storage {
             return
         }
         cars = loadedCars
+        
     }
     
 }

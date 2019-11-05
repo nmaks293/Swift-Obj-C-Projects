@@ -10,24 +10,17 @@ import Foundation
 
 struct Car: CustomStringConvertible, Equatable, Codable {
     private let id: UUID = UUID()
-    
-    let name: String
-    let year: Int
-    let model: String
-    
+    let chars: [String : String]
+
     var description: String {
-        return """
-          Name: \(name)
-          Year: \(year)
-          Model: \(model)
-        """
+        var string: String = ""
+        for (field,value) in chars {
+            string += "  \(field): \(value)\n"
+        }
+        return string
     }
     
     static func ==(lhs: Car, rhs: Car) -> Bool {
-        return lhs.name == rhs.name && lhs.model == rhs.model && lhs.year == rhs.year
-    }
-    
-    static func ===(lhs: Car, rhs: Car) -> Bool {
         return lhs.id == rhs.id
     }
 }

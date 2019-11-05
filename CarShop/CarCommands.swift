@@ -14,7 +14,7 @@ enum  CarCommands: String {
     
     
     
-    static func allCarCommands() -> String {
+    static func allCommands() -> String {
         var result: String = ""
         for command in self.commands {
             result += "'\(command.rawValue)' "

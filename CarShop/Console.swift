@@ -9,11 +9,38 @@
 class Console {
     private let storage: Storage
     
+    private var fields: [String] // можно было реализовать через протоколы, но не успел
+    private var countOfFields: Int
+    
     init(storage: Storage) {
         self.storage = storage
+        self.fields = []
+        self.countOfFields = 0
     }
     
     func run() {
+        
+        while true {
+            print("Write count of fields:", separator: "", terminator: "")
+            guard let newLine = readLine(), let newCount = Int(newLine) else {
+                print("Please write correct number")
+                continue
+            }
+            countOfFields = newCount
+            break
+        }
+        
+        while fields.count != countOfFields {
+            print("Write field name:", separator: "", terminator: "")
+            guard let field = readLine() else {
+                fatalError("There is no field name")
+            }
+            fields.append(field)
+        }
+        
+        storage.removeExcessCars(count: countOfFields, fields: self.fields)
+        
+        
         var isWorked: Bool = true
         while isWorked {
             print("Write command:", separator: "", terminator: "")
@@ -66,29 +93,17 @@ class Console {
                 break
             }
         }
-        
-        print("Write car name: ", separator: "", terminator: "")
-        guard let carName = readLine() else {
-            fatalError("There is no car name")
-        }
-        print("Write car year: ", separator: "", terminator: "")
-        
-        var carYear: Int = 0
-        while true {
-            guard let carYearOfStr = readLine(), let newCarYear = Int(carYearOfStr) else {
-                print("Please write correct year")
-                continue
+        var carFields: [String : String] = [:]
+        for field in fields {
+            print("Write car \(field): ", separator: "", terminator: "")
+            guard let carField = readLine() else {
+                fatalError("There is no car \(field)")
             }
-            carYear = newCarYear
-            break
+            carFields[field] = carField
         }
+       
         
-        print("Write car model: ", separator: "", terminator: "")
-        guard let carModel = readLine() else {
-            fatalError("There is no car model")
-        }
-        
-        storage.cars.insert(Car(name: carName, year: carYear, model: carModel), at: position)
+        storage.cars.insert(Car(chars: carFields), at: position)
         print("Car was successfully added")
     }
     
@@ -106,7 +121,7 @@ class Console {
             }
             
             guard let command = CarCommands(rawValue: read) else {
-                print("Please write correct command: [\(CarCommands.allCarCommands())]")
+                print("Please write correct command: [\(CarCommands.allCommands())]")
                 continue
             }
             byWhat = command
@@ -155,22 +170,15 @@ class Console {
             var carsToBeRemoved: [Car] = []
             
             for car in storage.cars {
-                if car.name.contains(someChar) {
-                    carsToBeRemoved.append(car)
-                    storage.removeCar(car)
-                    continue
-                }
-                if car.model.contains(someChar) {
-                    carsToBeRemoved.append(car)
-                    storage.removeCar(car)
-                    continue
-                }
-                if String(car.year).contains(someChar) {
-                    carsToBeRemoved.append(car)
-                    storage.removeCar(car)
-                    continue
+                for (_, value) in car.chars {
+                    if value.contains(someChar) {
+                        carsToBeRemoved.append(car)
+                        storage.removeCar(car)
+                        continue
+                    }
                 }
             }
+            
             if carsToBeRemoved.isEmpty {
                 print("None of the cars has '\(someChar)' as a characteristic")
             } else {
@@ -183,5 +191,6 @@ class Console {
             
             break
         }
-    }
+    }    
+    
 }
