@@ -7,7 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		218BBF2A2365E95600B69CAB /* CarCommands.swift in Sources */ = {isa = PBXBuildFile; fileRef = 218BBF292365E95600B69CAB /* CarCommands.swift */; };
 		21F6C0152361C9E5004CFC95 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6C0142361C9E5004CFC95 /* main.swift */; };
+		21F6C01C2361CD9C004CFC95 /* Console.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6C01B2361CD9C004CFC95 /* Console.swift */; };
+		21F6C01E2361CDAB004CFC95 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6C01D2361CDAB004CFC95 /* Storage.swift */; };
+		21F6C0202361CDB7004CFC95 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6C01F2361CDB7004CFC95 /* Car.swift */; };
+		21F6C0222361CDC3004CFC95 /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21F6C0212361CDC3004CFC95 /* Command.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -23,8 +28,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		218BBF292365E95600B69CAB /* CarCommands.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarCommands.swift; sourceTree = "<group>"; };
 		21F6C0112361C9E5004CFC95 /* CarShop */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CarShop; sourceTree = BUILT_PRODUCTS_DIR; };
 		21F6C0142361C9E5004CFC95 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		21F6C01B2361CD9C004CFC95 /* Console.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Console.swift; sourceTree = "<group>"; };
+		21F6C01D2361CDAB004CFC95 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		21F6C01F2361CDB7004CFC95 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		21F6C0212361CDC3004CFC95 /* Command.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +68,11 @@
 			isa = PBXGroup;
 			children = (
 				21F6C0142361C9E5004CFC95 /* main.swift */,
+				21F6C01B2361CD9C004CFC95 /* Console.swift */,
+				21F6C01D2361CDAB004CFC95 /* Storage.swift */,
+				21F6C01F2361CDB7004CFC95 /* Car.swift */,
+				21F6C0212361CDC3004CFC95 /* Command.swift */,
+				218BBF292365E95600B69CAB /* CarCommands.swift */,
 			);
 			path = CarShop;
 			sourceTree = "<group>";
@@ -121,6 +136,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				21F6C0152361C9E5004CFC95 /* main.swift in Sources */,
+				21F6C01C2361CD9C004CFC95 /* Console.swift in Sources */,
+				218BBF2A2365E95600B69CAB /* CarCommands.swift in Sources */,
+				21F6C0202361CDB7004CFC95 /* Car.swift in Sources */,
+				21F6C0222361CDC3004CFC95 /* Command.swift in Sources */,
+				21F6C01E2361CDAB004CFC95 /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -244,7 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = MK626ZQ2M4;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_HARDENED_RUNTIME = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
